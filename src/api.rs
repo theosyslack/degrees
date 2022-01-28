@@ -26,7 +26,6 @@ pub async fn search_person(person_name: &str) -> Option<PersonSearch> {
         encode(person_name)
     );
 
-    println!("{}", &uri_with_params);
     let response = reqwest::get(uri_with_params)
         .await
         .expect("Could not reach site.");
