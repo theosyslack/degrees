@@ -2,7 +2,7 @@ use std::fmt::Display;
 
 use serde::{Deserialize, Serialize};
 
-use crate::api::{get_movie, get_person_credits};
+use crate::api::{get_movie, get_person_credits, get_person};
 
 use super::{credits::Credits, movie::Movie};
 
@@ -11,9 +11,17 @@ pub struct Person {
     pub id: i32,
     pub name: String,
     pub profile_path: Option<String>,
+    pub imdb_id: Option<String>,
+    pub homepage: Option<String>,
+    pub biography: Option<String>,
 }
 
 impl Person {
+    pub async fn get_details(&self) -> Option<Person> {
+        let id = format!("{}", &self.id);
+        get_person(&id).await
+    }
+
     pub async fn get_credits(&self) -> Option<Credits> {
         let id_str = format!("{}", self.id);
         get_person_credits(&id_str).await

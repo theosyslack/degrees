@@ -27,6 +27,12 @@ async fn main() {
 
         let first_person = first_person_search.get_first_result().expect("Couldn't find any results for first person");
 
+        // Since this comes from a search result, 
+        // some of the fields might be missing.
+        // lets hit the endpoint one more time to
+        // get all the details
+        let first_person = first_person.get_details().await.expect("Couldn't get details");
+
         println!("{}", first_person);
     } else if let Some(second_person_name) = second_person_name {
         let first_person_search = search_person(first_person_name)
