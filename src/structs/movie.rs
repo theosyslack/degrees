@@ -5,9 +5,4 @@ pub struct Movie {
     pub id: i32,
     pub title: String,
     pub overview: String,
-    pub tagline: String,
-}
-
-impl Movie {
-    
 }

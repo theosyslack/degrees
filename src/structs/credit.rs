@@ -1,6 +1,6 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
-use crate::api::{get_movie};
+use crate::api::get_movie;
 
 use super::movie::Movie;
 
@@ -15,8 +15,11 @@ pub struct Credit {
 }
 
 impl Credit {
-    pub async fn get_movie (&self) -> Option<Movie> {
-        let id_str = format!("{}", self.id);
-        get_movie(&id_str).await
+    pub async fn as_movie(&self) -> Movie {
+        Movie {
+            id: self.movie_id,
+            title: self.title.clone(),
+            overview: self.overview.clone(),
+        }
     }
 }

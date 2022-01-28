@@ -1,0 +1,181 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 62862,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/euCnMxNRlHNxA4f9BMnWbmxPOse.jpg",
+                    "genre_ids": [
+                        10751,
+                        16,
+                        35
+                    ],
+                    "id": 20352,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Despicable Me",
+                    "overview": "Villainous Gru lives up to his reputation as a despicable, deplorable and downright unlikable guy when he hatches a plan to steal the moon from the sky. But he has a tough time staying on task after three orphans land in his care.",
+                    "poster_path": "/fb9zF01GKOkNziYVusg20laWsGh.jpg",
+                    "release_date": "2010-07-08",
+                    "title": "Despicable Me",
+                    "video": false,
+                    "vote_average": 7.2,
+                    "vote_count": 12818
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/6jajFcaY2YsfGQstJ5HaqZNVseX.jpg",
+                    "genre_ids": [
+                        27,
+                        878,
+                        9648
+                    ],
+                    "id": 126889,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Alien: Covenant",
+                    "overview": "Bound for a remote planet on the far side of the galaxy, the crew of the colony ship 'Covenant' discovers what is thought to be an uncharted paradise, but is actually a dark, dangerous world—which has a sole inhabitant: the 'synthetic', David, survivor of the doomed Prometheus expedition.",
+                    "poster_path": "/zecMELPbU5YMQpC81Z8ImaaXuf9.jpg",
+                    "release_date": "2017-05-09",
+                    "title": "Alien: Covenant",
+                    "video": false,
+                    "vote_average": 6,
+                    "vote_count": 6893
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/nM1kHUIalqE2cr3el1A06yKUlha.jpg",
+                    "genre_ids": [
+                        16,
+                        12,
+                        35,
+                        14
+                    ],
+                    "id": 223702,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Sausage Party",
+                    "overview": "Frank leads a group of supermarket products on a quest to discover the truth about their existence and what really happens when they become chosen to leave the grocery store.",
+                    "poster_path": "/6jjOY2Vgii2wbUOYNWkMLLqnpZB.jpg",
+                    "release_date": "2016-07-11",
+                    "title": "Sausage Party",
+                    "video": false,
+                    "vote_average": 5.7,
+                    "vote_count": 6047
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Danny McBride",
+            "popularity": 19.755,
+            "profile_path": "/sVFPzl2t5QlGudQKWAszIWZCXZv.jpg"
+        },
+        {
+            "adult": false,
+            "gender": 2,
+            "id": 1248221,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/j9E1pGqx2ZYnyGQYMB1JYtUxJ6u.jpg",
+                    "genre_ids": [
+                        14,
+                        28,
+                        53
+                    ],
+                    "id": 277,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Underworld",
+                    "overview": "Vampires and werewolves have waged a nocturnal war against each other for centuries. But all bets are off when a female vampire warrior named Selene, who's famous for her strength and werewolf-hunting prowess, becomes smitten with a peace-loving male werewolf, Michael, who wants to end the war.",
+                    "poster_path": "/zsnQ41UZ3jo1wEeemF0eA9cAIU0.jpg",
+                    "release_date": "2003-09-19",
+                    "title": "Underworld",
+                    "video": false,
+                    "vote_average": 6.8,
+                    "vote_count": 5085
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/v63E5H5TD7Eay1gZPVt9ibP9riy.jpg",
+                    "genre_ids": [
+                        14,
+                        28,
+                        27
+                    ],
+                    "id": 52520,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Underworld: Awakening",
+                    "overview": "Having escaped years of imprisonment, vampire warrioress Selene finds herself in a changed world where humans have discovered the existence of both Vampire and Lycan clans and are conducting an all-out war to eradicate both immortal species. Now Selene must battle the humans and a frightening new breed of super Lycans to ensure the death dealers' survival.",
+                    "poster_path": "/jN0uuc8U6M3sTg9zEaliJV60Stf.jpg",
+                    "release_date": "2012-01-19",
+                    "title": "Underworld: Awakening",
+                    "video": false,
+                    "vote_average": 6.3,
+                    "vote_count": 3388
+                },
+                {
+                    "adult": false,
+                    "backdrop_path": "/s8OsODRjurs7n6U7WCVKfsoYbdH.jpg",
+                    "genre_ids": [
+                        14,
+                        28,
+                        53
+                    ],
+                    "id": 834,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Underworld: Evolution",
+                    "overview": "As the war between the vampires and the Lycans rages on, Selene, a former member of the Death Dealers (an elite vampire special forces unit that hunts werewolves), and Michael, the werewolf hybrid, work together in an effort to unlock the secrets of their respective bloodlines.",
+                    "poster_path": "/yT1EDKhCzAumcZeBoAxqm0nY2H8.jpg",
+                    "release_date": "2006-01-12",
+                    "title": "Underworld: Evolution",
+                    "video": false,
+                    "vote_average": 6.6,
+                    "vote_count": 3276
+                }
+            ],
+            "known_for_department": "Writing",
+            "name": "Danny McBride",
+            "popularity": 3.176,
+            "profile_path": null
+        },
+        {
+            "adult": false,
+            "gender": 0,
+            "id": 3344950,
+            "known_for": [
+                {
+                    "adult": false,
+                    "backdrop_path": "/55k4k2KeYvZDFOHzKoZTrCsDQA0.jpg",
+                    "genre_ids": [
+                        12,
+                        10402,
+                        10751
+                    ],
+                    "id": 36759,
+                    "media_type": "movie",
+                    "original_language": "en",
+                    "original_title": "Sgt. Pepper's Lonely Hearts Club Band",
+                    "overview": "A small town band makes it big, but loses track of their roots, as they get caught up into the big-time machinations of the music biz. Now, they must thwart a plot to destroy their home town. Built around the music of The Beatles, this musical uses some big name groups like Peter Frampton and Aerosmith.",
+                    "poster_path": "/fxpPgpCbzKluSizyN21SHXiVZ15.jpg",
+                    "release_date": "1978-07-24",
+                    "title": "Sgt. Pepper's Lonely Hearts Club Band",
+                    "video": false,
+                    "vote_average": 4.3,
+                    "vote_count": 35
+                }
+            ],
+            "known_for_department": "Acting",
+            "name": "Danny McBride",
+            "popularity": 0.6,
+            "profile_path": null
+        }
+    ],
+    "total_pages": 1,
+    "total_results": 3
+}
