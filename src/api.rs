@@ -1,9 +1,9 @@
-use std::{env, os::unix::process, process::exit};
+use std::{env, process::exit};
 
 use urlencoding::encode;
 
 use crate::{
-    errors::{Error, Kind, Result},
+    errors::{Kind, Result},
     structs::{credits::Credits, movie::Movie, person::Person, person_search::PersonSearch},
 };
 
@@ -71,17 +71,6 @@ pub async fn get_person_credits(id: &str) -> Result<Credits> {
 
 pub async fn get_movie(id: &str) -> Result<Movie> {
     let path = format!("movie/{}", id);
-    let uri = uri(&path);
-    let response = reqwest::get(uri).await?;
-    let body = response.text().await?;
-
-    let person_credits: Movie = serde_json::from_str(&body)?;
-
-    Ok(person_credits)
-}
-
-pub async fn get_movie_credits(id: &str) -> Result<Movie> {
-    let path = format!("movie/{}/credits", id);
     let uri = uri(&path);
     let response = reqwest::get(uri).await?;
     let body = response.text().await?;

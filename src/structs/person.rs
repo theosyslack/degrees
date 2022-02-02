@@ -41,24 +41,6 @@ impl Person {
         Ok(false)
     }
 
-    pub async fn get_same_movie_ids(&self, other_person: &Person) -> Result<Vec<String>> {
-        let mut same_movie_ids: Vec<String> = vec![];
-
-        let credits = self.get_credits().await?;
-        let other_person_credits = other_person.get_credits().await?;
-
-        let movie_ids = credits.get_movies_ids();
-        let other_movie_ids = other_person_credits.get_movies_ids();
-
-        for id in movie_ids {
-            if other_movie_ids.contains(&id) {
-                same_movie_ids.push(id)
-            }
-        }
-
-        Ok(same_movie_ids)
-    }
-
     pub async fn get_shared_movies(&self, other_person: &Person) -> Result<Vec<Movie>> {
         let mut movies: Vec<Movie> = vec![];
         let credits = self.get_credits().await?;

@@ -8,12 +8,6 @@ use std::process::exit;
 use api::search_person;
 use args::ArgType;
 use errors::{Error, Kind, Result};
-use structs::person::Person;
-
-const KEVIN_BACON: &str = "4724";
-const JOHN_LITHGOW: &str = "12074";
-const DANNY_MCBRIDE: &str = "62862";
-const SETH_ROGAN: &str = "19274";
 
 #[tokio::main]
 async fn main() {
@@ -23,7 +17,7 @@ async fn main() {
         ArgType::PersonSearch(person_name) => search_subcommand(&person_name).await,
         ArgType::PersonCompare((first, second)) => compare_subcommand(&first, &second).await,
         ArgType::PersonChain(_) => todo!(),
-        ArgType::Invalid => Err(Kind::InvalidArgs.as_error()),
+        ArgType::NoneProvided => Err(Kind::NoArgs.as_error()),
     };
 
     if let Err(err) = result {
@@ -39,7 +33,7 @@ fn handle_error(err: Error) {
             eprintln!("degrees \"Kevin Bacon\" \"John Lithgow\"");
         }
         Kind::DataParsing((row, col, body)) => {
-            let slice = &body[col - 20..col + 20];
+            let slice = get_data_parsing_error_slice(&body, col);
             eprintln!("Error parsing data:");
             eprintln!("{}, {}", row, col);
             eprintln!("Error at {}: {}", col, slice);
@@ -63,7 +57,7 @@ async fn search_subcommand(person_name: &str) -> Result<()> {
     let person_with_details = person.get_details().await?;
 
     println!(
-        "{} ( {} )",
+        "[{}]({})",
         person_with_details.name,
         person_with_details.imdb_url()
     );
@@ -85,8 +79,15 @@ async fn search_subcommand(person_name: &str) -> Result<()> {
         // print!("\n")
     }
 
-    println!("----------");
-    println!("{}", person_with_details.biography);
+    println!("---");
+
+    // Print the bio as a markdown quote.
+    for line in person_with_details.biography.split('\n') {
+        println!("> {}", line);    
+    }
+    // println!("{}", person_with_details.biography);
+    // println!(">>>");
+
 
     Ok(())
 }
@@ -156,3 +157,20 @@ async fn compare_subcommand(first: &str, second: &str) -> Result<()> {
 
 //     Ok(args)
 // }
+
+
+fn get_data_parsing_error_slice(body: &str, col: usize) -> &str {
+    let before = 20;
+    let after = 20;
+    let start = col - before;
+    let end = col - after;
+
+    // Ensure there's enough room for start and end.
+    let slice = body.get(start..end);
+
+    if let Some(slice) = slice {
+        slice
+    } else {
+        body
+    }
+}

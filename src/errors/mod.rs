@@ -11,9 +11,6 @@ impl Error {
     pub fn from_kind(kind: Kind) -> Self {
         Error { kind }
     }
-    pub fn as_result<T>(&self) -> Result<T> {
-        Err(self.clone())
-    }
 }
 
 impl From<reqwest::Error> for Error {
@@ -32,14 +29,12 @@ impl From<reqwest::Error> for Error {
 
 impl From<serde_json::Error> for Error {
     fn from(err: serde_json::Error) -> Self {
-        match err {
-            _ => Kind::SerdeParsingError(err.to_string()).as_error(),
-        }
+        Kind::SerdeParsingError(err.to_string()).as_error()
     }
 }
 
 impl From<VarError> for Error {
-    fn from(err: VarError) -> Self {
+    fn from(_: VarError) -> Self {
         Kind::NoApiKey.as_error()
     }
 }
@@ -47,25 +42,21 @@ impl From<VarError> for Error {
 #[derive(Clone, Debug, PartialEq)]
 pub enum Kind {
     NoArgs,
-    InvalidArgs,
     NoApiKey,
-    InvalidApiKey,
+    // InvalidApiKey,
     TmdbConnectionFailure,
     ParsingFailed,
-    InvalidMovieId,
+    // InvalidMovieId,
     UnknownRequest,
-    UnknownParsing,
+    // UnknownParsing,
     SerdeParsingError(String),
     DataParsing((usize, usize, String)),
-    PersonSearchFailed,
+    // PersonSearchFailed,
     PersonSearchNoResults,
 }
 
 impl Kind {
-    pub fn as_error(self) -> Error {
-        Error { kind: self }
-    }
-    pub fn to_result<T>(self) -> Result<T> {
-        Err(self.as_error())
+    pub fn as_error(&self) -> Error {
+        Error { kind: self.clone() }
     }
 }

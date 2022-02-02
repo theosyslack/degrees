@@ -1,8 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{api::get_movie, errors::Result};
-
-use super::{credit::Credit, movie::Movie};
+use super::{credit::Credit};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Credits {
@@ -21,17 +19,5 @@ impl Credits {
             .collect();
 
         movie_ids
-    }
-
-    pub async fn get_movies(&self) -> Result<Vec<Movie>> {
-        let mut movies: Vec<Movie> = vec![];
-        let movie_ids = self.get_movies_ids();
-
-        for id in &movie_ids {
-            let movie = get_movie(id).await?;
-            movies.push(movie)
-        }
-
-        Ok(movies)
     }
 }

@@ -2,7 +2,7 @@ use std::env;
 
 #[derive(Debug)]
 pub enum ArgType {
-    Invalid,
+    NoneProvided,
     PersonSearch(String),
     PersonCompare((String, String)),
     PersonChain(Vec<String>),
@@ -15,7 +15,7 @@ impl ArgType {
         match args.len() {
             // 0 shouldn't happen, since that's the location
             // of the program being executed.
-            0 | 1 => ArgType::Invalid,
+            0 | 1 => ArgType::NoneProvided,
             2 => {
                 let person = &args[1];
 
