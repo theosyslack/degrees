@@ -82,9 +82,10 @@ async fn search_subcommand(person_name: &str) -> Result<()> {
     println!("---");
 
     // Print the bio as a markdown quote.
-    for line in person_with_details.biography.split('\n') {
-        println!("> {}", line);    
-    }
+    pretty_print_description(&person_with_details.biography);
+    // for line in .split_at(mid) {
+    //     println!("> {}", line);    
+    // }
     // println!("{}", person_with_details.biography);
     // println!(">>>");
 
@@ -172,5 +173,11 @@ fn get_data_parsing_error_slice(body: &str, col: usize) -> &str {
         slice
     } else {
         body
+    }
+}
+
+fn pretty_print_description(description: &str) -> () {
+    for line in description.lines() {
+        println!("> {}", line);
     }
 }
