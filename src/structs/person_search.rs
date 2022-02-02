@@ -49,6 +49,7 @@ impl PersonSearchResult {
                 .iter()
                 .map(|movie| movie.to_string())
                 .collect();
+                
             let title_string = titles.join(", ");
             string.push_str(&title_string);
         }

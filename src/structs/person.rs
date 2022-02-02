@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -66,15 +68,6 @@ impl Person {
         }
     }
 
-    pub fn to_string(&self) -> String {
-        let mut string = String::new();
-
-        string.push_str(&self.to_title_string());
-        string.push_str(&self.bio());
-
-        string
-    }
-
     pub fn bio(&self) -> String {
         let bio_lines: Vec<String> = self
             .biography
@@ -98,5 +91,16 @@ impl Person {
         }
 
         string
+    }
+}
+
+impl Display for Person {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut string = String::new();
+        
+        string.push_str(&self.to_title_string());
+        string.push_str(&self.bio());
+
+        write!(f, "{}", string)
     }
 }
