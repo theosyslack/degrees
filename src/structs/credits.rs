@@ -16,7 +16,7 @@ impl Credits {
         // TODO: It seems like it's possible to get duplicates for movies in the Credits. You should de-dupe here.
         let credits = &self.cast;
         let movie_ids = credits
-            .into_iter()
+            .iter()
             .map(|credit| format!("{}", credit.movie_id))
             .collect();
 

@@ -52,7 +52,7 @@ pub async fn get_person(id: &str) -> Result<Person> {
     let person: serde_json::Result<Person> = serde_json::from_str(&body);
 
     if let Err(err) = person {
-        return Err(Kind::DataParsing((err.line(), err.column(), body.to_string())).to_error());
+        return Err(Kind::DataParsing((err.line(), err.column(), body)).as_error());
     }
 
     Ok(person.unwrap())
