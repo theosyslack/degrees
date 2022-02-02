@@ -18,7 +18,7 @@ pub struct PersonSearch {
 
 impl PersonSearch {
     pub fn get_first_result(&self) -> Result<PersonSearchResult> {
-        if self.results.len() == 0 {
+        if self.results.is_empty() {
             Err(Error::from_kind(Kind::PersonSearchNoResults))
         } else {
             Ok(self.results[0].clone())
@@ -30,7 +30,7 @@ impl PersonSearch {
 pub struct PersonSearchResult {
     pub id: i32,
     pub name: String,
-    pub known_for: Vec<MovieSearchResult>,
+    pub known_for: Vec<KnownForResult>,
 }
 
 impl PersonSearchResult {
@@ -41,13 +41,27 @@ impl PersonSearchResult {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct MovieSearchResult {
+pub struct KnownForResult {
     pub id: i32,
-    pub title: String,
+    pub media_type: String,
+    // The Type determines wether or not
+    // the result has a title or a name.
+    pub title: Option<String>,
+    pub name: Option<String>,
 }
 
-impl Display for MovieSearchResult {
+impl Display for KnownForResult {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.title)
+        let string: &str = {
+            let mut string = "NONE";
+            if let Some(title) = &self.title {
+                string = title
+            } else if let Some(name) = &self.name {
+                string = name
+            }
+            string
+        };
+
+        write!(f, "{}", string)
     }
 }

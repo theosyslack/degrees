@@ -26,25 +26,25 @@ impl From<reqwest::Error> for Error {
             return Error::from_kind(Kind::ParsingFailed);
         }
 
-        Kind::UnknownRequest.to_error()
+        Kind::UnknownRequest.as_error()
     }
 }
 
 impl From<serde_json::Error> for Error {
     fn from(err: serde_json::Error) -> Self {
         match err {
-            _ => Kind::UnknownParsing.to_error(),
+            _ => Kind::SerdeParsingError(err.to_string()).as_error(),
         }
     }
 }
 
 impl From<VarError> for Error {
     fn from(err: VarError) -> Self {
-        Kind::NoApiKey.to_error()
+        Kind::NoApiKey.as_error()
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum Kind {
     NoArgs,
     InvalidArgs,
@@ -55,16 +55,17 @@ pub enum Kind {
     InvalidMovieId,
     UnknownRequest,
     UnknownParsing,
+    SerdeParsingError(String),
     DataParsing((usize, usize, String)),
     PersonSearchFailed,
     PersonSearchNoResults,
 }
 
 impl Kind {
-    pub fn to_error(self) -> Error {
+    pub fn as_error(self) -> Error {
         Error { kind: self }
     }
     pub fn to_result<T>(self) -> Result<T> {
-        Err(self.to_error())
+        Err(self.as_error())
     }
 }
