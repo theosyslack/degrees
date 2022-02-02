@@ -38,6 +38,23 @@ impl PersonSearchResult {
         let id = format!("{}", &self.id);
         get_person(&id).await
     }
+    pub fn known_for(&self) -> String {
+        let mut string = String::new();
+
+        if !self.known_for.is_empty() {
+            string.push_str("Known for: ");
+
+            let titles: Vec<String> = self
+                .known_for
+                .iter()
+                .map(|movie| movie.to_string())
+                .collect();
+            let title_string = titles.join(", ");
+            string.push_str(&title_string);
+        }
+
+        string
+    }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]

@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -13,8 +11,8 @@ use super::{credits::Credits, movie::Movie};
 pub struct Person {
     pub id: i32,
     pub name: String,
-    pub profile_path: String,
-    pub imdb_id: String,
+    pub profile_path: Option<String>,
+    pub imdb_id: Option<String>,
     pub homepage: Option<String>,
     pub biography: String,
 }
@@ -59,14 +57,46 @@ impl Person {
         Ok(movies)
     }
 
-    pub fn imdb_url(&self) -> String {
-        format!("https://www.imdb.com/name/{}", &self.imdb_id)
+    pub fn imdb_url(&self) -> Option<String> {
+        if let Some(imdb_id) = &self.imdb_id {
+            let string = format!("https://www.imdb.com/name/{}", imdb_id);
+            Some(string)
+        } else {
+            None
+        }
     }
-}
 
-impl Display for Person {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let json = serde_json::to_string_pretty(&self).expect("Could not Display Person");
-        write!(f, "{}", json)
+    pub fn to_string(&self) -> String {
+        let mut string = String::new();
+
+        string.push_str(&self.to_title_string());
+        string.push_str(&self.bio());
+
+        string
+    }
+
+    pub fn bio(&self) -> String {
+        let bio_lines: Vec<String> = self
+            .biography
+            .lines()
+            .map(|line| format!("> {}", line))
+            .collect();
+
+        bio_lines.join("\n")
+    }
+
+    pub fn to_title_string(&self) -> String {
+        let mut string = String::new();
+
+        let name = &self.name;
+        let url = self.imdb_url();
+
+        if let Some(url) = url {
+            string.push_str(&format!("## [{}]({})", name, url));
+        } else {
+            string.push_str(&format!("## {}", &name));
+        }
+
+        string
     }
 }

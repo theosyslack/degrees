@@ -37,6 +37,7 @@ fn handle_error(err: Error) {
             eprintln!("Error parsing data:");
             eprintln!("{}, {}", row, col);
             eprintln!("Error at {}: {}", col, slice);
+            eprintln!("{}", body)
         }
         Kind::PersonSearchNoResults => {
             eprintln!("No Person found for query.");
@@ -52,43 +53,14 @@ fn handle_error(err: Error) {
 
 async fn search_subcommand(person_name: &str) -> Result<()> {
     let person_search = search_person(person_name).await?;
-    let person = person_search.get_first_result()?;
+    let person_search_result = person_search.get_first_result()?;
+    let person = person_search_result.get_details().await?;
 
-    let person_with_details = person.get_details().await?;
-
-    println!(
-        "[{}]({})",
-        person_with_details.name,
-        person_with_details.imdb_url()
-    );
-
-    if person.known_for.is_empty() {
-        print!("Known for: ");
-        let movie_titles: Vec<String> = person
-            .known_for
-            .into_iter()
-            .map(|m| {
-                // Add some quotes around the title
-                format!("\"{}\"", m)
-            })
-            .collect();
-        let movie_string = movie_titles.join(", ");
-        // for movie in person.known_for {
-        println!(" {} ", movie_string);
-        // }
-        // print!("\n")
-    }
-
+    println!("{}", person.to_title_string());
     println!("---");
-
-    // Print the bio as a markdown quote.
-    pretty_print_description(&person_with_details.biography);
-    // for line in .split_at(mid) {
-    //     println!("> {}", line);    
-    // }
-    // println!("{}", person_with_details.biography);
-    // println!(">>>");
-
+    println!("{}", person_search_result.known_for());
+    println!();
+    println!("{}", person.bio());
 
     Ok(())
 }
@@ -159,7 +131,6 @@ async fn compare_subcommand(first: &str, second: &str) -> Result<()> {
 //     Ok(args)
 // }
 
-
 fn get_data_parsing_error_slice(body: &str, col: usize) -> &str {
     let before = 20;
     let after = 20;
@@ -173,11 +144,5 @@ fn get_data_parsing_error_slice(body: &str, col: usize) -> &str {
         slice
     } else {
         body
-    }
-}
-
-fn pretty_print_description(description: &str) -> () {
-    for line in description.lines() {
-        println!("> {}", line);
     }
 }

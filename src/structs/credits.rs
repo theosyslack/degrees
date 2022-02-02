@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::{credit::Credit};
+use super::credit::Credit;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Credits {
