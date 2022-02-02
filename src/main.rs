@@ -59,8 +59,7 @@ async fn search_subcommand(person_name: &str) -> Result<()> {
     println!("{}", person.to_title_string());
     println!("---");
     println!("{}", person_search_result.known_for());
-    println!();
-    println!("{}", person.bio());
+    print!("{}", person.bio());
 
     Ok(())
 }

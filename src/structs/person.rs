@@ -69,13 +69,11 @@ impl Person {
     }
 
     pub fn bio(&self) -> String {
-        let bio_lines: Vec<String> = self
+        self
             .biography
             .lines()
-            .map(|line| format!("> {}", line))
-            .collect();
-
-        bio_lines.join("\n")
+            .map(|line| format!("> {} \n", line))
+            .collect()
     }
 
     pub fn to_title_string(&self) -> String {
